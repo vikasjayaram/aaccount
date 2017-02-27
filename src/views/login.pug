@@ -1,0 +1,82 @@
+extends layout
+block title
+  title Login
+block body
+  body.aui-page-focused.aui-page-focused-xsmall.aui-page-size-xsmall.aid-page-minimal.aid-page-login
+    #page
+      header#header(role='banner')
+        nav.aui-header.aui-dropdown2-trigger-group.aui-header-logo-hires(role='navigation')
+          .aui-header-inner
+            .aui-header-primary
+              h1#logo.aui-header-logo.aui-header-logo-atlassian
+                a(href='https://id.atlassian.com/manage')
+                  span.aui-header-logo-device Atlassian account
+          // .aui-header-inner
+        // .aui-header
+      // #header
+      section#content(role='main')
+        header.aui-page-header
+          .aui-page-header-inner
+            .aui-page-header-main.microbranding
+              h1 Atlassian
+            // .aui-page-header-main
+          // .aui-page-header-inner
+        // .aui-page-header
+        .aui-page-panel
+          .aui-page-panel-inner
+            section.aui-page-panel-content
+              .google-login(data-i18n-or='or')
+                button#google-signin-button.aui-button.aui-button-supersize
+                  span.aui-icon.aui-icon-large.aid-icon-google
+                  | Log in with Google
+              form#form-login.aui.top-label.aui-form-supersize.two-step(action='', method='post', novalidate='')
+                .field-group.username-field
+                  label(for='username') Email
+                  input#username.text.full-width-field.aui-field-has-icon(type='email', name='username', maxlength='255', placeholder='Email', autofocus='')
+                  span.aui-icon.aui-icon-small.aui-iconfont-edit-small
+                .field-group.password-field
+                  label(for='password') Password
+                  input#password.text.full-width-field(type='password', name='password', placeholder='Password')
+                p.privacy-agreement
+                  | By logging in, you
+                  strong
+                    | agree to the
+                    a(target='_blank', href='https://www.atlassian.com/legal/privacy-policy') Privacy Policy
+                  | .
+                .buttons-container
+                  .buttons
+                    button#login-submit.aui-button.aui-button-primary(type='submit')
+                      span.button-text.first Next
+                      span.button-text.second Log in
+                      span.button-transition-icon.aui-icon.aui-icon-wait Loading
+                input#csrfToken.hidden(type='hidden', name='csrfToken', value='183c12b62a7b4b4a56a348ccef125ea65467f768')
+                input#current-attempt.hidden(type='hidden', name='current-attempt', value='1')
+              ul.login-help-links
+                li
+                  a#resetPassword(href='https://id.atlassian.com/login/resetpassword') Having trouble logging in?
+            // .aui-page-panel-content
+          // .aui-page-panel-inner
+        // .aui-page-panel
+        .aui-page-panel.aid-page-panel-bottom
+          .aui-page-panel-inner
+            section.aui-page-panel-content
+              p
+                | Need an account?
+                a#signup(href='https://id.atlassian.com/signup?application=&tenant=&continue=') Sign up
+                | .
+            // .aui-page-panel-content
+          // .aui-page-panel-inner
+        // .aui-page-panel
+      // #content
+      footer#footer(role='contentinfo')
+        .footer-body
+          ul
+            li
+              a(target='_blank', href='https://www.atlassian.com/end-user-agreement') Terms of Use
+            li
+              a(target='_blank', href='https://support.atlassian.com') Support
+            li
+              a(target='_blank', href='https://www.atlassian.com/company/privacy') Privacy Policy
+          #footer-logo
+            a(href='http://www.atlassian.com/') Atlassian
+      // #footer
