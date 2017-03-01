@@ -1,0 +1,77 @@
+extends layout
+
+block body
+ nav.aui-navgroup.aui-navgroup-horizontal
+  .aui-navgroup-inner
+    .aui-navgroup-primary
+      ul.aui-nav
+        li
+          a(href='/profile') Auth0 - Atlassian Reference Implementation
+    .aui-navgroup-secondary
+      ul.aui-nav
+        li
+          a.aui-nav-item(href='/logout') Logout
+
+ section#content(role='main')
+   // AUI Sidebar
+   .aui-sidebar
+     .aui-sidebar-wrapper
+       .aui-sidebar-body
+         // AUI Page Header
+         header.aui-page-header
+           .aui-page-header-inner
+             .aui-page-header-image
+               // AUI Avatar
+               span.aui-avatar.aui-avatar-large.aui-avatar-project
+                 span.aui-avatar-inner
+                   img(src=user.picture)
+             .aui-page-header-main
+               h1
+                 | #{user.displayName}
+               ol.aui-nav.aui-nav-breadcrumbs
+                 li
+                   a(href='#')
+                     span.aui-nav-item-label 
+         // AUI Navigation
+         nav.aui-navgroup.aui-navgroup-vertical
+           .aui-navgroup-inner
+             // A Sidebar group will collapse into a single trigger icon when sidebar is collapsed
+             // The 'actions' sidebar group type will be styled differently from normal groups when sidebar is collapsed
+             .aui-sidebar-group.aui-sidebar-group-tier-one
+               //
+                 in a "Tier One" Sidebar group, AUI Nav heading is ignored, and each nav item's label will be used
+                 as the tooltip text instead
+               br
+               ul.aui-nav
+                 li.aui-nav-selected
+                   a.aui-nav-item(href='/account_settings')
+                     // "Tier One" navigation items MUST have an AUI Icon before the text label
+                     span.aui-icon.aui-icon-small.aui-iconfont-info
+                     // "Tier One" Nav items labels also need an extra SPAN around them with the aui-nav-item-label class
+                     span.aui-nav-item-label Account Settings
+                 li
+                   a.aui-nav-item(href='/change_email', title='This is a really really long title for whatever this is')
+                     span.aui-icon.aui-icon-small.aui-iconfont-details
+                     span.aui-nav-item-label Change email address
+                 li
+                   a.aui-nav-item(href='/change_password')
+                     span.aui-icon.aui-icon-small.aui-iconfont-jira-completed-task
+                     span.aui-nav-item-label Change password
+                 li
+                   a.aui-nav-item(href='/mfa')
+                     span.aui-icon.aui-icon-small.aui-iconfont-time
+                     span.aui-nav-item-label Two step verification
+                 li
+                   a.aui-nav-item(href='#')
+                     span.aui-icon.aui-icon-small.aui-iconfont-devtools-submodule
+                     span.aui-nav-item-label Billing details
+                 li
+                   a.aui-nav-item(href='#')
+                     span.aui-icon.aui-icon-small.aui-iconfont-devtools-tag
+                     span.aui-nav-item-label Labels
+       // Sidebar footer contains the expand/collapse trigger, and optionally a button or a dropdown with configuration settings
+       .aui-sidebar-footer
+         a.aui-button.aui-button-subtle.aui-sidebar-toggle.aui-sidebar-footer-tipsy(title='Collapse sidebar')
+           span.aui-icon.aui-icon-small
+     // end AUI Sidebar
+

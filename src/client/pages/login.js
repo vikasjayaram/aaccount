@@ -1,24 +1,26 @@
 import $ from 'jquery';
-import auth0 from 'auth0-js';
+import Auth0 from 'auth0-js';
 
-$('#form-login').submit(function(ev) {
+$('#login-submit').click(function(ev) {
   var config = {};
-  var webAuth = new auth0.WebAuth({
-      domain: "atlassian-cse.auth0.com",
-      clientID: "vLFyDYCrf5xNVusuoVEmKiSDkLJA1GA4",
-      redirectUri: "http://localhost:9000/login"
+  var webAuth = new Auth0.WebAuth({
+      domain: __AUTH0_DOMAIN__,
+      clientID: __AUTH0_CLIENT_ID__,
+      redirectUri: __AUTH0_CALLBACK_URL__
   });
   ev.preventDefault();
   var options = config.internalOptions || {};
   options.username = document.getElementById('username').value;
   options.password = document.getElementById('password').value;
-  options.connection = 'local';
+  options.connection = __AUTH0_CONNECTION__;
   options.responseType = "code";
-  options.scope = "openid";
-  console.log(options);
+  options.scope = __SCOPE__;
   webAuth.redirect.loginWithCredentials(options,function(err,r){
     console.log(err);
     console.log(r);
+    if (err) {
+      document.getElementById("login_failed").innerHTML = err.description;
+    }
   });
 });
 

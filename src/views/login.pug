@@ -29,18 +29,19 @@ block body
                 button#google-signin-button.aui-button.aui-button-supersize
                   span.aui-icon.aui-icon-large.aid-icon-google
                   | Log in with Google
-              form#form-login.aui.top-label.aui-form-supersize.two-step(action='', method='post', novalidate='')
+              span#login_failed(style="color:red;")
+              form#form-login.aui.top-label.aui-form-supersize.two-step
                 .field-group.username-field
                   label(for='username') Email
-                  input#username.text.full-width-field.aui-field-has-icon(type='email', name='username', maxlength='255', placeholder='Email', autofocus='')
+                  input#username.text.full-width-field.aui-field-has-icon(type='email', name='username', maxlength='255', placeholder='Email', autofocus='', required)
                   span.aui-icon.aui-icon-small.aui-iconfont-edit-small
                 .field-group.password-field
                   label(for='password') Password
-                  input#password.text.full-width-field(type='password', name='password', placeholder='Password')
+                  input#password.text.full-width-field(type='password', name='password', placeholder='Password', required)
                 p.privacy-agreement
                   | By logging in, you
                   strong
-                    | agree to the
+                    | &nbsp;agree to the&nbsp;
                     a(target='_blank', href='https://www.atlassian.com/legal/privacy-policy') Privacy Policy
                   | .
                 .buttons-container
