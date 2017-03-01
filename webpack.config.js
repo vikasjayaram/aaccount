@@ -1,5 +1,9 @@
 const path = require('path');
 const lsr = require('lsr');
+const webpack = require('webpack');
+const dotenv = require('dotenv');
+
+dotenv.load();
 
 function buildEntry() {
   var entry = {};
@@ -38,7 +42,9 @@ function buildOutput() {
     path: path.resolve('./src/public/assets'),
     publicPath: '/assets/',
     filename: '[name].bundle.js',
-    chunkFilename: '[id].chunk.js'
+    chunkFilename: '[id].chunk.js',
+    library: 'config',
+    libraryTarget: 'var'
   };
 }
 
@@ -53,6 +59,14 @@ function buildDevServer() {
   }
 }
 
+let config = {
+    AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID,
+    AUTH0_DOMAIN: process.env.AUTH0_DOMAIN,
+    AUTH0_CALLBACK_URL: process.env.AUTH0_CALLBACK_URL,
+    AUTH0_CONNECTION: process.env.AUTH0_CONNECTION,
+    SCOPE: process.env.SCOPE
+};
+
 module.exports = {
   entry: buildEntry(),
   output: buildOutput(),
@@ -61,5 +75,14 @@ module.exports = {
     loaders: buildLoaders()
   },
   devtool: 'source-map',
-  devServer: buildDevServer()
+  devServer: buildDevServer(),
+  plugins: [
+    new webpack.DefinePlugin({
+      __AUTH0_DOMAIN__: JSON.stringify(config.AUTH0_DOMAIN),
+      __AUTH0_CLIENT_ID__: JSON.stringify(config.AUTH0_CLIENT_ID),
+      __AUTH0_CALLBACK_URL__: JSON.stringify(config.AUTH0_CALLBACK_URL),
+      __AUTH0_CONNECTION__: JSON.stringify(config.AUTH0_CONNECTION),
+      __SCOPE__: JSON.stringify(config.SCOPE),
+    })
+  ]
 }
