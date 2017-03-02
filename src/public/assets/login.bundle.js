@@ -8056,7 +8056,17 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#login-submit').click(function (
 
 __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#google-signin-button').click(function (ev) {
   ev.preventDefault();
-  alert('not impleted yet....');
+  var webAuth = new __WEBPACK_IMPORTED_MODULE_1_auth0_js___default.a.WebAuth({
+    domain: "atlassian-cse.auth0.com",
+    clientID: "vLFyDYCrf5xNVusuoVEmKiSDkLJA1GA4",
+    redirectUri: "http://localhost:9009/callback"
+  });
+  var options = config.internalOptions || {};
+  options.connection = 'google-oauth2';
+  options.responseType = "code";
+  options.scope = "openid";
+  options.redirectUri = "http://localhost:9009/callback";
+  webAuth.authorize(options);
 });
 
 /***/ })

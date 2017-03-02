@@ -30,17 +30,14 @@ block body
                  | #{user.displayName}
                ol.aui-nav.aui-nav-breadcrumbs
                  li
-                   a(href='#')
-                     span.aui-nav-item-label 
+                   span.aui-nav-item-label #{user.emails[0].value}
+
          // AUI Navigation
          nav.aui-navgroup.aui-navgroup-vertical
            .aui-navgroup-inner
              // A Sidebar group will collapse into a single trigger icon when sidebar is collapsed
              // The 'actions' sidebar group type will be styled differently from normal groups when sidebar is collapsed
              .aui-sidebar-group.aui-sidebar-group-tier-one
-               //
-                 in a "Tier One" Sidebar group, AUI Nav heading is ignored, and each nav item's label will be used
-                 as the tooltip text instead
                br
                ul.aui-nav
                  li.aui-nav-selected
@@ -62,13 +59,13 @@ block body
                      span.aui-icon.aui-icon-small.aui-iconfont-time
                      span.aui-nav-item-label Two step verification
                  li
-                   a.aui-nav-item(href='#')
+                   a.aui-nav-item(href='/dev_portal')
                      span.aui-icon.aui-icon-small.aui-iconfont-devtools-submodule
-                     span.aui-nav-item-label Billing details
+                     span.aui-nav-item-label Developer Portal
                  li
-                   a.aui-nav-item(href='#')
+                   a.aui-nav-item(href='/app_specific')
                      span.aui-icon.aui-icon-small.aui-iconfont-devtools-tag
-                     span.aui-nav-item-label Labels
+                     span.aui-nav-item-label App Specific Passwords
        // Sidebar footer contains the expand/collapse trigger, and optionally a button or a dropdown with configuration settings
        .aui-sidebar-footer
          a.aui-button.aui-button-subtle.aui-sidebar-toggle.aui-sidebar-footer-tipsy(title='Collapse sidebar')
