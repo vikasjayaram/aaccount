@@ -27,5 +27,15 @@ $('#login-submit').click(function(ev) {
 
 $('#google-signin-button').click(function(ev) {
   ev.preventDefault();
-  alert('not impleted yet....');
+  var webAuth = new Auth0.WebAuth({
+      domain: __AUTH0_DOMAIN__,
+      clientID: __AUTH0_CLIENT_ID__,
+      redirectUri: __AUTH0_CALLBACK_URL__
+  });
+  var options = config.internalOptions || {};
+  options.connection = 'google-oauth2';
+  options.responseType = "code";
+  options.scope = __SCOPE__;
+  options.redirectUri = __AUTH0_CALLBACK_URL__
+  webAuth.authorize(options);
 });

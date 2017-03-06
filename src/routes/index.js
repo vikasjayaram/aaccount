@@ -48,4 +48,11 @@ router.get('/mfa', ensureLoggedIn, (req,res)=> {
   res.render('mfa', {user: req.user});
 });
 
+router.get('/dev_portal', ensureLoggedIn, (req,res)=> {
+  res.render('dev_portal', {user: req.user});
+});
+
+router.get('/app_specific', ensureLoggedIn, (req,res)=> {
+  res.render('app_specific', {user: req.user});
+});
 module.exports = router;
